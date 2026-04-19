@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initLazyLoading();
     initActiveNav();
+    initBackgroundMusic();
     
     // ===== 倒计时功能 =====
     function initCountdown() {
@@ -134,15 +135,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // 获取表单数据
-            const formData = {
-                name: nameInput.value.trim(),
-                guests: parseInt(guestsInput.value),
-                timestamp: new Date().toISOString()
-            };
+            // 跳转到问卷星表单
+            const wjxUrl = 'https://v.wjx.cn/vm/rXjEUD7.aspx';
+            window.open(wjxUrl, '_blank');
             
-            // 显示提交成功
-            showSuccessMessage(formData);
+            // 显示提示
+            showToast('正在打开宾客回执表单...');
             
             // 清空表单
             rsvpForm.reset();
@@ -618,6 +616,72 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         document.body.classList.add('loaded');
     }, 500);
+    
+    // ===== 背景音乐控制功能 =====
+    function initBackgroundMusic() {
+        const bgMusic = document.getElementById('bg-music');
+        const musicToggle = document.getElementById('music-toggle');
+        
+        if (!bgMusic || !musicToggle) {
+            console.log('音乐元素或按钮未找到');
+            return;
+        }
+        
+        let isPlaying = false;
+        
+        // 点击音乐图标切换播放/暂停
+        musicToggle.addEventListener('click', function() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicToggle.classList.remove('playing');
+                showToast('音乐已暂停 🎵');
+            } else {
+                bgMusic.play().then(() => {
+                    musicToggle.classList.add('playing');
+                    showToast('音乐开始播放 🎵');
+                }).catch(error => {
+                    console.log('音乐播放失败:', error);
+                    showToast('无法播放音乐，请稍后再试');
+                });
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // 添加音乐图标动画样式
+        const musicStyle = document.createElement('style');
+        musicStyle.textContent = `
+            #music-toggle {
+                cursor: pointer;
+                transition: all 0.3s ease;
+                animation: none;
+            }
+            
+            #music-toggle:hover {
+                transform: scale(1.1);
+                color: #C62828;
+            }
+            
+            #music-toggle.playing {
+                animation: rotate 2s linear infinite;
+                color: #C62828;
+            }
+            
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        `;
+        document.head.appendChild(musicStyle);
+        
+        // 设置音乐音量
+        bgMusic.volume = 0.5;
+        
+        console.log('%c🎵 背景音乐已加载，点击右上角音乐图标播放', 'color: #8A9A5B; font-size: 12px;');
+    }
     
     // 控制台欢迎信息
     console.log('%c💝 孙鸣航 & 顾紫薇 婚礼邀请函 💝', 'color: #C62828; font-size: 18px; font-weight: bold;');

@@ -32,6 +32,11 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- 背景音乐 -->
+    <audio id="bg-music" loop>
+        <source src="assets/宇多田ヒカル - 誓い.mp3" type="audio/mpeg">
+    </audio>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +54,7 @@
             <div class="cover-content">
                 <!-- 顶部英文诗句 -->
                 <div class="english-poem">
-                    <i class="fas fa-music music-icon"></i>
+                    <i class="fas fa-music music-icon" id="music-toggle" title="点击播放/暂停音乐"></i>
                     <p>I LOVE THREE THINGS IN THIS WORLD<br>SUN, MOON AND YOU</p>
                 </div>
                 

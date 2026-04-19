@@ -223,16 +223,31 @@ body {
     color: var(--color-text-dark);
     margin-bottom: var(--spacing-xs);
     display: flex;
-    justify-content: center;
+    justify-content: center;  /* 整体居中 */
     align-items: center;
     gap: var(--spacing-sm);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;  /* 强制禁止换行，确保在同一行显示 */
 }
 
+/* 左侧英文姓名 - 占据左侧空间，向右对齐贴近喜字 */
+.names .pinyin:first-child {
+    flex: 1;
+    text-align: right;
+}
+
+/* 中间囍字 - 固定宽度，绝对居中 */
 .xi-character {
+    flex: 0 0 auto;  /* 不伸缩，保持自然宽度 */
     font-size: 1.8rem;
     color: var(--color-classic-red);
     margin: 0 var(--spacing-sm);
+    text-align: center;
+}
+
+/* 右侧英文姓名 - 占据右侧空间，向左对齐贴近喜字 */
+.names .pinyin:last-child {
+    flex: 1;
+    text-align: left;
 }
 
 .chinese-names {
