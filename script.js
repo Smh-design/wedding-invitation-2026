@@ -113,45 +113,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // ===== RSVP表单功能 =====
+    // ===== RSVP直接跳转功能 =====
     function initRSVPForm() {
-        const rsvpForm = document.querySelector('.rsvp-form');
-        if (!rsvpForm) return;
+        const directRsvpButton = document.getElementById('direct-rsvp-button');
+        if (!directRsvpButton) return;
         
-        rsvpForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const nameInput = document.getElementById('name');
-            const guestsInput = document.getElementById('guests');
-            
-            // 表单验证
-            if (!nameInput.value.trim()) {
-                showError(nameInput, '请输入您的姓名');
-                return;
-            }
-            
-            if (!guestsInput.value || parseInt(guestsInput.value) < 1) {
-                showError(guestsInput, '请输入正确的出席人数');
-                return;
-            }
-            
+        directRsvpButton.addEventListener('click', function() {
             // 跳转到问卷星表单
             const wjxUrl = 'https://v.wjx.cn/vm/rXjEUD7.aspx';
             window.open(wjxUrl, '_blank');
             
             // 显示提示
             showToast('正在打开宾客回执表单...');
-            
-            // 清空表单
-            rsvpForm.reset();
-        });
-        
-        // 输入框实时验证
-        const inputs = rsvpForm.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('input', function() {
-                clearError(this);
-            });
         });
     }
     
