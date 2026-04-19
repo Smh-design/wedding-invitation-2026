@@ -1016,8 +1016,11 @@ body {
     }
     
     .english-line {
-        font-size: 0.65rem;
-        letter-spacing: 0.08em;
+        font-size: 0.62rem;  /* 稍微减小字体，确保完整显示 */
+        letter-spacing: 0.05em;  /* 减少字符间距 */
+        white-space: nowrap;
+        overflow: visible;  /* 允许溢出而不是隐藏 */
+        text-overflow: clip;  /* 不显示省略号 */
     }
 }
 

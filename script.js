@@ -628,9 +628,63 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         let isPlaying = false;
+        let hasUserInteracted = false;
+        
+        // 策略：页面加载后静音播放，用户第一次交互时取消静音
+        // 这样可以绕过浏览器的自动播放限制
+        bgMusic.muted = true;
+        bgMusic.volume = 0.5; // 设置音量，但先静音
+        
+        // 尝试静音播放（大多数浏览器允许静音自动播放）
+        bgMusic.play().then(() => {
+            console.log('音乐已静音加载，等待用户交互...');
+            isPlaying = true;
+            musicToggle.classList.add('playing');
+        }).catch(error => {
+            console.log('静音播放失败，等待用户交互:', error);
+        });
+        
+        // 页面第一次点击事件 - 取消静音并开始正常播放
+        function handleFirstUserInteraction() {
+            if (hasUserInteracted) return;
+            
+            hasUserInteracted = true;
+            bgMusic.muted = false;
+            
+            // 如果音乐还没开始播放，则开始播放
+            if (!isPlaying) {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicToggle.classList.add('playing');
+                    showToast('音乐开始播放 🎵');
+                }).catch(error => {
+                    console.log('用户交互后播放失败:', error);
+                    showToast('无法播放音乐，请稍后再试');
+                });
+            } else {
+                // 音乐已经在静音播放，现在只是取消静音
+                showToast('音乐已取消静音 🎵');
+            }
+            
+            // 移除事件监听器，避免重复触发
+            document.removeEventListener('click', handleFirstUserInteraction);
+            document.removeEventListener('touchstart', handleFirstUserInteraction);
+        }
+        
+        // 添加用户交互监听
+        document.addEventListener('click', handleFirstUserInteraction);
+        document.addEventListener('touchstart', handleFirstUserInteraction);
         
         // 点击音乐图标切换播放/暂停
-        musicToggle.addEventListener('click', function() {
+        musicToggle.addEventListener('click', function(e) {
+            e.stopPropagation(); // 阻止事件冒泡到document
+            
+            if (!hasUserInteracted) {
+                // 如果用户还没交互过，先处理第一次交互
+                handleFirstUserInteraction();
+                return;
+            }
+            
             if (isPlaying) {
                 bgMusic.pause();
                 musicToggle.classList.remove('playing');
@@ -677,10 +731,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.head.appendChild(musicStyle);
         
-        // 设置音乐音量
-        bgMusic.volume = 0.5;
-        
-        console.log('%c🎵 背景音乐已加载，点击右上角音乐图标播放', 'color: #8A9A5B; font-size: 12px;');
+        console.log('%c🎵 背景音乐已加载，点击页面任意位置开始播放', 'color: #8A9A5B; font-size: 12px;');
     }
     
     // 控制台欢迎信息
