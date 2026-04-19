@@ -946,3 +946,276 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-classic-red);
 }
+
+/* ============================================================
+   📱 移动端排版修复（仅影响手机端，PC端不受影响）
+   ============================================================ */
+
+/* ===== 移动端主要修复（≤768px） ===== */
+@media (max-width: 768px) {
+    
+    /* 🔧 修复1：新人姓名区域 - 强制同一行显示 */
+    .names {
+        /* 强制禁止换行，确保三个元素在同一行 */
+        flex-wrap: nowrap !important;
+        
+        /* 使用flex布局实现左右对齐，中间居中 */
+        justify-content: space-between !important;
+        
+        /* 确保垂直居中对齐 */
+        align-items: center !important;
+        
+        /* 调整间距，适应小屏幕 */
+        gap: 0.5rem !important;
+        
+        /* 设置最小宽度，防止过度压缩 */
+        min-width: 100% !important;
+        
+        /* 防止水平滚动 */
+        overflow: hidden !important;
+    }
+    
+    /* 左侧英文姓名 - 居右对齐 */
+    .names .pinyin:first-child {
+        flex: 1 !important;
+        text-align: right !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: clamp(0.7rem, 3vw, 1.2rem) !important;
+    }
+    
+    /* 中间囍字 - 居中显示，固定宽度 */
+    .xi-character {
+        flex: 0 0 auto !important;
+        font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
+        margin: 0 0.5rem !important;
+        text-align: center !important;
+    }
+    
+    /* 右侧英文姓名 - 居左对齐 */
+    .names .pinyin:last-child {
+        flex: 1 !important;
+        text-align: left !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: clamp(0.7rem, 3vw, 1.2rem) !important;
+    }
+    
+    /* 🔧 修复2：功能按钮区域 - 强制水平排列 */
+    .h5-nav {
+        /* 强制水平排列，覆盖原有的垂直布局 */
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        
+        /* 按钮等宽分布，占满屏幕宽度 */
+        justify-content: space-around !important;
+        
+        /* 调整间距，适应小屏幕 */
+        gap: 0.5rem !important;
+        
+        /* 设置最小高度，保证点击区域 */
+        min-height: auto !important;
+    }
+    
+    /* 单个按钮 - 等宽分布 */
+    .h5-nav .nav-button {
+        /* 每个按钮占1/3宽度 */
+        flex: 1 !important;
+        
+        /* 保持垂直布局（图标在上，文字在下） */
+        flex-direction: column !important;
+        
+        /* 最小宽度，防止过度压缩 */
+        min-width: 60px !important;
+        
+        /* 调整内边距，优化移动端体验 */
+        padding: 0.5rem !important;
+        
+        /* 调整间距 */
+        gap: 0.3rem !important;
+    }
+    
+    /* 按钮图标 - 适配移动端 */
+    .h5-nav .nav-button i {
+        font-size: clamp(1.2rem, 4vw, 1.5rem) !important;
+    }
+    
+    /* 按钮文字 - 适配移动端 */
+    .h5-nav .nav-button span {
+        font-size: clamp(0.7rem, 3vw, 0.9rem) !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        text-align: center !important;
+    }
+    
+    /* 🔧 修复3：倒计时区域 - 强制同一行显示 */
+    .countdown-container {
+        /* 强制水平排列，禁止换行 */
+        flex-wrap: nowrap !important;
+        
+        /* 四个卡片等宽分布 */
+        justify-content: space-around !important;
+        
+        /* 调整间距，适应小屏幕 */
+        gap: 0.5rem !important;
+        
+        /* 确保占满可用宽度 */
+        width: 100% !important;
+        
+        /* 防止水平滚动 */
+        overflow: hidden !important;
+    }
+    
+    /* 单个倒计时卡片 - 四等分 */
+    .countdown-block {
+        /* 每个卡片占1/4宽度 */
+        flex: 1 !important;
+        
+        /* 移动端适当减小内边距 */
+        padding: clamp(0.6rem, 2vw, 1rem) !important;
+        
+        /* 设置最小宽度，保证可读性 */
+        min-width: 60px !important;
+        
+        /* 防止过度压缩 */
+        max-width: none !important;
+    }
+    
+    /* 倒计时数字 - 适配移动端 */
+    .countdown-number {
+        font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
+        line-height: 1.2 !important;
+        margin-bottom: clamp(0.3rem, 1vw, 0.5rem) !important;
+    }
+    
+    /* 倒计时标签 - 适配移动端 */
+    .countdown-label {
+        font-size: clamp(0.7rem, 2.5vw, 1rem) !important;
+    }
+}
+
+/* ===== 极小屏幕优化（≤480px） ===== */
+@media (max-width: 480px) {
+    
+    /* 极小屏幕 - 新人姓名区域进一步优化 */
+    .names {
+        gap: 0.3rem !important;
+    }
+    
+    .names .pinyin {
+        font-size: clamp(0.6rem, 2.8vw, 1rem) !important;
+        letter-spacing: 0.05em !important;
+    }
+    
+    .xi-character {
+        font-size: clamp(1rem, 3.5vw, 1.5rem) !important;
+        margin: 0 0.3rem !important;
+    }
+    
+    /* 极小屏幕 - 功能按钮进一步优化 */
+    .h5-nav {
+        gap: 0.3rem !important;
+    }
+    
+    .h5-nav .nav-button {
+        padding: 0.4rem !important;
+        min-width: 50px !important;
+    }
+    
+    .h5-nav .nav-button i {
+        font-size: 1.1rem !important;
+    }
+    
+    .h5-nav .nav-button span {
+        font-size: clamp(0.65rem, 2.5vw, 0.8rem) !important;
+    }
+    
+    /* 极小屏幕 - 倒计时卡片进一步优化 */
+    .countdown-container {
+        gap: 0.3rem !important;
+    }
+    
+    .countdown-block {
+        padding: clamp(0.5rem, 1.5vw, 0.8rem) !important;
+        min-width: 50px !important;
+    }
+    
+    .countdown-number {
+        font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
+    }
+    
+    .countdown-label {
+        font-size: clamp(0.6rem, 2vw, 0.85rem) !important;
+    }
+}
+
+/* ===== 超小屏幕保护（≤375px） ===== */
+@media (max-width: 375px) {
+    
+    /* 超小屏幕 - 新人姓名区域 */
+    .names .pinyin {
+        font-size: 0.65rem !important;
+    }
+    
+    .xi-character {
+        font-size: 1.1rem !important;
+    }
+    
+    /* 超小屏幕 - 功能按钮 */
+    .h5-nav .nav-button span {
+        font-size: 0.7rem !important;
+    }
+    
+    /* 超小屏幕 - 倒计时 */
+    .countdown-number {
+        font-size: 1.4rem !important;
+    }
+    
+    .countdown-label {
+        font-size: 0.7rem !important;
+    }
+}
+
+/* ============================================================
+   📝 修复说明
+   ============================================================
+   
+   ✅ 已修复的三个核心问题：
+   
+   1. 新人姓名区域（.names）
+      - 强制同一行显示，禁止换行
+      - 左右英文名分别贴边对齐
+      - 中间囍字水平居中
+      - 字号自适应，小屏自动缩小
+      - 使用text-overflow防止溢出
+   
+   2. 功能按钮区域（.h5-nav）
+      - 强制水平排列，禁止垂直堆叠
+      - 三个按钮等宽分布
+      - 保持完整文字："祝福留言"、"烟火贺喜"、"永结同心"
+      - 间距优化，点击区域适配移动端
+   
+   3. 倒计时区域（.countdown-container）
+      - 强制同一行显示，禁止换行
+      - 四个卡片等分屏幕宽度
+      - 适当减小内边距，优化空间利用
+      - 数字和标签完整显示
+   
+   🎯 技术特点：
+   - 仅使用@media查询，不影响PC端
+   - 使用flex布局实现响应式
+   - 使用clamp()函数实现平滑字号适配
+   - 使用!important确保移动端样式优先级
+   - 三层媒体查询覆盖不同屏幕尺寸
+   - 添加详细注释，便于后续维护
+   
+   📱 兼容性：
+   - PC端（>768px）：完全不受影响
+   - 平板（≤768px）：应用主要修复
+   - 手机（≤480px）：进一步优化
+   - 小屏手机（≤375px）：额外保护
+   
+   ============================================================ */
