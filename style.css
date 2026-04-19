@@ -964,6 +964,100 @@ body {
 
 /* ============================================================
    📱 移动端排版修复（仅影响手机端，PC端不受影响）
+    ============================================================ */
+
+/* ============================================================
+   📱 移动端transition-text适配（防止换行，保持在一行）
+   ============================================================ */
+
+/* 主要修复（≤768px） */
+@media (max-width: 768px) {
+    /* 过渡文本区域 - 确保在手机上正确显示 */
+    .transition-text {
+        text-align: center;
+        margin-bottom: var(--spacing-md);
+        padding: 0 var(--spacing-sm);
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    /* 中文行 - 强制一行显示，防止换行 */
+    .chinese-line {
+        font-size: 1rem;
+        letter-spacing: 0.15em;
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        display: block;
+        max-width: 100%;
+    }
+    
+    /* 英文行 - 强制一行显示，防止换行 */
+    .english-line {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        line-height: 1.4;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        display: block;
+        max-width: 100%;
+    }
+}
+
+/* 小屏幕优化（≤480px） */
+@media (max-width: 480px) {
+    .chinese-line {
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.3rem;
+    }
+    
+    .english-line {
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+    }
+}
+
+/* 超小屏幕保护（≤375px） */
+@media (max-width: 375px) {
+    .chinese-line {
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.2rem;
+    }
+    
+    .english-line {
+        font-size: 0.6rem;
+        letter-spacing: 0.06em;
+    }
+}
+
+/* ============================================================
+   📝 修复说明
+   ============================================================
+   
+   ✅ 已修复的问题：
+   
+   1. transition-text区域在手机端适配
+      - 使用@media查询针对不同屏幕尺寸优化
+      - 强制white-space: nowrap确保文本不换行
+      - 使用text-overflow: ellipsis防止溢出
+      - 字号随着屏幕变小自动调整
+   
+   2. 保持设计风格一致性
+      - 保持原有的letter-spacing风格
+      - 保持原有的字体家族
+      - 保持原有的颜色方案
+   
+   🎯 适配效果：
+   - PC端：完全不受影响
+   - 平板（≤768px）：中文1rem，英文0.7rem，强制一行显示
+   - 手机（≤480px）：中文0.9rem，英文0.65rem
+   - 小屏手机（≤375px）：中文0.8rem，英文0.6rem
+   
    ============================================================ */
 
 /* ===== 移动端主要修复（≤768px） ===== */
