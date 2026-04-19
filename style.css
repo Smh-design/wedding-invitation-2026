@@ -136,6 +136,34 @@ body {
     opacity: 0.7;
 }
 
+/* 点击播放提示 */
+.click-prompt {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(198, 40, 40, 0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    animation: pulse 2s infinite;
+    color: var(--color-classic-red);
+    font-size: 0.8rem;
+    font-family: var(--font-sans);
+}
+
+.click-prompt i {
+    font-size: 0.9rem;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
 /* 中心主标题 */
 .main-title {
     margin-bottom: var(--spacing-lg);
@@ -667,76 +695,65 @@ body {
     letter-spacing: 0.3em;
 }
 
-.rsvp-form {
+/* 直接跳转按钮区域 */
+.rsvp-direct-action {
+    text-align: center;
     max-width: 400px;
     margin: 0 auto var(--spacing-xl);
 }
 
-.form-group {
-    margin-bottom: var(--spacing-lg);
-}
-
-.input-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.red-star {
-    position: absolute;
-    left: 15px;
-    color: var(--color-classic-red);
-    font-size: 0.8rem;
-    z-index: 1;
-}
-
-.input-container input {
-    width: 100%;
-    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 40px;
-    border: 1px solid var(--color-classic-red);
-    border-radius: var(--radius-md);
-    font-family: var(--font-sans);
-    font-size: 1rem;
+.rsvp-instruction {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
     color: var(--color-text-dark);
-    background-color: transparent;
-    transition: all 0.3s ease;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
 }
 
-.input-container input:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.2);
-    border-color: var(--color-classic-red);
-}
-
-.input-container input::placeholder {
-    color: var(--color-text-light);
-    opacity: 0.7;
-}
-
-.submit-button {
+.direct-submit-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
     width: 100%;
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg);
     background-color: var(--color-classic-red);
     color: var(--color-pure-white);
     border: none;
-    border-radius: var(--radius-md);
-    font-size: 1.1rem;
+    border-radius: var(--radius-lg);
+    font-size: 1.3rem;
+    font-family: var(--font-serif);
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: var(--spacing-lg);
+    box-shadow: 0 4px 20px rgba(198, 40, 40, 0.3);
 }
 
-.submit-button:hover {
+.direct-submit-button:hover {
     opacity: 0.9;
-    transform: translateY(-2px);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(198, 40, 40, 0.4);
 }
 
-.submit-button i {
-    font-size: 1.2rem;
+.direct-submit-button:active {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 15px rgba(198, 40, 40, 0.3);
+}
+
+.direct-submit-button i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.direct-submit-button:hover i {
+    transform: translateX(5px);
+}
+
+.rsvp-note {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin-top: var(--spacing-md);
+    letter-spacing: 0.1em;
 }
 
 .closing-message {

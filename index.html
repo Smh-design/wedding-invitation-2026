@@ -55,6 +55,10 @@
                 <!-- 顶部英文诗句 -->
                 <div class="english-poem">
                     <i class="fas fa-music music-icon" id="music-toggle" title="点击播放/暂停音乐"></i>
+                    <div id="click-prompt" class="click-prompt">
+                        <i class="fas fa-hand-pointer"></i>
+                        <span>点击页面任意位置播放音乐</span>
+                    </div>
                     <p>I LOVE THREE THINGS IN THIS WORLD<br>SUN, MOON AND YOU</p>
                 </div>
                 
@@ -229,26 +233,16 @@
                 <div class="pinyin-subtitle">BIN KE HUI ZHI</div>
             </div>
             
-            <form class="rsvp-form">
-                <div class="form-group">
-                    <div class="input-container">
-                        <i class="fas fa-star red-star"></i>
-                        <input type="text" id="name" placeholder="姓名" required>
-                    </div>
-                </div>
+            <div class="rsvp-direct-action">
+                <p class="rsvp-instruction">点击下方按钮直接跳转至宾客回执表单</p>
                 
-                <div class="form-group">
-                    <div class="input-container">
-                        <i class="fas fa-star red-star"></i>
-                        <input type="number" id="guests" placeholder="出席人数" min="1" max="10" required>
-                    </div>
-                </div>
-                
-                <button type="submit" class="submit-button">
-                    <span>提交回执</span>
-                    <i class="fas fa-paper-plane"></i>
+                <button class="direct-submit-button" id="direct-rsvp-button">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>前往填写回执</span>
                 </button>
-            </form>
+                
+                <p class="rsvp-note">您将在问卷星页面填写详细信息</p>
+            </div>
             
             <div class="closing-message">
                 <div class="chinese-closing">
