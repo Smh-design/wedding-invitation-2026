@@ -651,6 +651,12 @@ document.addEventListener('DOMContentLoaded', function() {
             hasUserInteracted = true;
             bgMusic.muted = false;
             
+            // 显示明确的提示信息
+            const clickPrompt = document.getElementById('click-prompt');
+            if (clickPrompt) {
+                clickPrompt.style.display = 'none';
+            }
+            
             // 如果音乐还没开始播放，则开始播放
             if (!isPlaying) {
                 bgMusic.play().then(() => {
