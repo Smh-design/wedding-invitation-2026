@@ -10,3 +10,13 @@ Thumbs.db
 # 忽略临时文件
 *.tmp
 *.temp
+
+# 忽略IDE文件
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# 忽略敏感文件
+workspace.xml
+config.xml
