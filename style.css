@@ -892,6 +892,26 @@ body {
     .chinese-closing {
         font-size: 1.2rem;
     }
+    
+    /* RSVP按钮适配 */
+    .rsvp-direct-action {
+        max-width: 320px;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .rsvp-instruction {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .direct-submit-button {
+        padding: var(--spacing-md);
+        font-size: 1.1rem;
+    }
+    
+    .direct-submit-button i {
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -942,6 +962,38 @@ body {
     .bottom-nav .nav-button {
         flex: 1;
         min-width: 60px;
+    }
+    
+    /* RSVP按钮进一步优化（≤480px） */
+    .rsvp-direct-action {
+        max-width: 280px;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .rsvp-instruction {
+        font-size: 0.95rem;
+        margin-bottom: var(--spacing-sm);
+        line-height: 1.5;
+    }
+    
+    .direct-submit-button {
+        padding: 0.8rem var(--spacing-md);
+        font-size: 1rem;
+        gap: 0.5rem;
+        border-radius: var(--radius-md);
+    }
+    
+    .direct-submit-button i {
+        font-size: 1rem;
+    }
+    
+    .direct-submit-button:hover i {
+        transform: translateX(3px);
+    }
+    
+    .rsvp-note {
+        font-size: 0.8rem;
+        margin-top: var(--spacing-sm);
     }
 }
 
@@ -1309,6 +1361,39 @@ body {
     
     .countdown-label {
         font-size: 0.7rem !important;
+    }
+    
+    /* 超小屏幕 - RSVP按钮极致优化（≤375px） */
+    .rsvp-direct-action {
+        max-width: 260px;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .rsvp-instruction {
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+    
+    .direct-submit-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+        gap: 0.3rem;
+        border-radius: var(--radius-sm);
+    }
+    
+    .direct-submit-button i {
+        font-size: 0.9rem;
+    }
+    
+    .direct-submit-button:hover i {
+        transform: translateX(2px);
+    }
+    
+    .rsvp-note {
+        font-size: 0.7rem;
+        margin-top: 0.5rem;
+        letter-spacing: 0.05em;
     }
 }
 
